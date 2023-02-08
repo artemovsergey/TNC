@@ -37,7 +37,8 @@ namespace TNC.WPF.ViewModels
         {
             using (DataContext db = new DataContext())
             {
-                //Users = db.Users.ToList();
+                var Users = db.Users.ToList();
+                MessageBox.Show(Users[0].Name.ToString());
             }
 
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuteed, CanCloseApplicationCommandExecute);
