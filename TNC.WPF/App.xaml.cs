@@ -8,10 +8,16 @@ using System.Windows;
 
 namespace TNC.WPF
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            MainWindow mv = new MainWindow();
+            //MainWindowViewModel vm = new MainWindowViewModel();
+            //mv.DataContext = vm;
+            mv.Show();
+        }
+
     }
 }
