@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using TNC.WPF.Command;
 using TNC.WPF.Data;
 using TNC.WPF.Models;
@@ -13,37 +17,20 @@ namespace TNC.WPF.ViewModels
     public class UserViewModel : ViewModel
     {
 
-        #region Команда AddUserCommand
-        public ICommand AddUserCommand { get; set; }
+        #region Команда CloseApplicationCommand
+        public ICommand CloseApplicationCommand { get; set; }
 
-        private bool CanAddUserCommandExecute(object p)
+        private bool CanCloseApplicationCommandExecute(object p)
         {
             return true;
         }
 
-        private void OnAddUserCommandExecuteed(object p)
+        private void OnCloseApplicationCommandExecuteed(object p)
         {
-            //CurrentUser = new User();
-            //AddUserWindow addUserWindow = new AddUserWindow();
-            //addUserWindow.DataContext = this;
-            //addUserWindow.ShowDialog();
+            MessageBox.Show("Приложение закрывается!");
+            App.Current.Shutdown();
         }
 
-        #endregion
-
-
-        #region Свойство Users
-        //private IEnumerable<User> _users;
-        //public IEnumerable<User> Users
-        //{
-        //    get { return _users; }
-
-        //    set
-        //    {
-        //        Set(ref _users, value);
-        //    }
-
-        //}
         #endregion
 
         public UserViewModel()
@@ -53,11 +40,7 @@ namespace TNC.WPF.ViewModels
                 //Users = db.Users.ToList();
             }
 
-            //CurrentUser = new User();
-            //CurrentRole = new Role();
-
-            //
-            AddUserCommand = new LambdaCommand(OnAddUserCommandExecuteed, CanAddUserCommandExecute);
+            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuteed, CanCloseApplicationCommandExecute);
 
         }
     }

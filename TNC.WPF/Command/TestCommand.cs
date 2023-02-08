@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace TNC.WPF.Command
 {
-    public abstract class Command : ICommand
+    public class TestCommand : ICommand
     {
 
         public event EventHandler? CanExecuteChanged
@@ -16,9 +17,13 @@ namespace TNC.WPF.Command
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public abstract bool CanExecute(object? parameter);
-
-        public abstract void Execute(object? parameter);
-
+        public bool CanExecute(object? parameter)
+        {
+            return 2 > 1;
+        }
+        public void Execute(object? parameter)
+        {
+            MessageBox.Show(parameter.ToString());
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TNC.WPF.Command
 {
-    internal class LambdaCommand : Command
+    public class LambdaCommand : Command
     {
 
         // если поля помечены readonly, то они будут работать быстрее
@@ -19,7 +19,7 @@ namespace TNC.WPF.Command
             _execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
             _canExecute = CanExecute;
         }
-
+            
         public override bool CanExecute(object? parameter) => _canExecute?.Invoke(parameter) ?? true;
 
         public override void Execute(object? parameter)
