@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Interface\" />
-    <Folder Include="Infrastucture\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,8 +13,8 @@ namespace TNC.WPF.Data
     internal class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        
-        //public DbSet<Role> Roles { get; set; }
+       
+        public DbSet<Role> Roles { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

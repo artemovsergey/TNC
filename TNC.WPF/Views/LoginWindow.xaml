@@ -4,52 +4,121 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TNC.WPF.Views"
+        xmlns:focus="clr-namespace:TNC.WPF.Infrastucture"
+        xmlns:cnv="clr-namespace:TNC.WPF.Converters"
+        
+        
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vm="clr-namespace:TNC.WPF.ViewModels" 
+        
         mc:Ignorable="d"
-        Title="Авторизация"
+        Title="Телеком Нива Связь"
         Height="450"
         Width="400"
         WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Icon="/Resources/image.ico"
         
         
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
+
         
         >
+
+    <Window.DataContext>
+        <vm:UserViewModel/>
+    </Window.DataContext>
+
+    
+    
+    <Window.InputBindings>
+        <KeyBinding Key="Return" Command="{Binding LoginCommand}"
+                                 CommandParameter="{Binding ElementName=passwordName}"/>
+    </Window.InputBindings>
+
+
+    <Window.Resources>
+        <cnv:PasswordConverter x:Key="passwordconverter" />
+    </Window.Resources>
 
     <Grid>
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <TextBlock Text="TNC" Margin="5"/>
-            <Image Margin="5" Source="/Resources/logo.jpg" Stretch="None"/>
+            <TextBlock Text="Телеком Нева Связь"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Margin="5"/>
+            <Image Margin="5" Source="/Resources/logo.jpg" Width="200" Height="100" Stretch="Uniform"/>
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
                 <TextBlock Text="Номер" Margin="5"/>
-                <TextBox Height="20" Width="100" Margin="5"/>
+                <TextBox Height="20"
+                         Width="100"
+                         Margin="5"
+                         focus:FocusExtension.IsFocused ="True"
+                         Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" RenderTransformOrigin="0.5,0.5"
+                         >
+                    <TextBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="2.524"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="0.441"/>
+                        </TransformGroup>
+                    </TextBox.RenderTransform>
+                </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <TextBlock Text="Пароль" Margin="5"/>
-                <TextBox Height="20" Width="100" Margin="5"/>
+                <PasswordBox Name="passwordName"
+                         Height="20"
+                         Width="100"
+                         Margin="5"
+                         focus:FocusExtension.IsFocused="{Binding PasswordFocus}"
+                         IsEnabled="{Binding PasswordEnable}"
+                         
+                             
+                         />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <TextBlock Text="Код" Margin="5"/>
-                <TextBox Height="20" Width="90" Margin="5"/>
-                <Image Margin="5" Source="/Resources/refresh.jpg" Width="20" Height="20"/>
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Код" Margin="0 5 25 0"/>
+                <TextBox Height="20"
+                         Width="70" 
+                         Margin="5"
+                         focus:FocusExtension.IsFocused="{Binding CodeFocus, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         IsEnabled="{Binding CodeEnable}"
+                         Text="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Height="20"
+                        IsEnabled="{Binding RefreshEnable}"
+                        Command="{Binding RefreshCommand}"
+                        Background="{Binding null}"
+                        
+                    >
+                    <Image Source="/Resources/refresh.jpg" Stretch="Uniform" Width="20" Height="17"/>
+                </Button>
+               
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="20">
-                <Button Margin="5" Width="100" Height="30">Отмена</Button>
-                <Button Margin="5" Width="100" Height="30">Вход</Button>
+                <Button Margin="5"
+                        Width="100"
+                        Height="30"
+                        Command="{Binding ClearCommand}"
+                        >Отмена</Button>
+                <Button Margin="5"
+                        Width="100"
+                        Height="30"
+                        IsEnabled="{Binding LoginEnable}"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding ElementName=passwordName}"
+                        >Вход</Button>
             </StackPanel>
 
         </StackPanel>

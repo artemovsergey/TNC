@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TNC.WPF.Views;
 
 namespace TNC.WPF
 {
@@ -13,7 +14,7 @@ namespace TNC.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow mv = new MainWindow();
+            LoginWindow mv = new LoginWindow();
             //MainWindowViewModel vm = new MainWindowViewModel();
             //mv.DataContext = vm;
             mv.Show();
