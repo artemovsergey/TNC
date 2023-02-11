@@ -165,6 +165,19 @@ namespace TNC.WPF.ViewModels
         #endregion
 
 
+        #region Свойство Title
+        private string _title;
+        public virtual string Title
+        {
+            get { return _title; }
+
+            set
+            {
+                Set(ref _title, value);
+            }
+
+        }
+        #endregion
 
         #region Свойство Number
         private string _number;
@@ -281,6 +294,7 @@ namespace TNC.WPF.ViewModels
 
         public UserViewModel()
         {
+            Title = "Телеком Нева Связь";
             PasswordEnable = false;
             PasswordEnable = false;
             CodeEnable = false;

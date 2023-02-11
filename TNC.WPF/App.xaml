@@ -1,8 +1,7 @@
 ﻿<Application x:Class="TNC.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TNC.WPF"
-             >
+             xmlns:local="clr-namespace:TNC.WPF" xmlns:cnv="clr-namespace:TNC.WPF.Converters">
     <Application.Resources>
         <!--
         <ResourceDictionary>
@@ -14,6 +13,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         -->
+
+        
+        <cnv:TitleConverter x:Key="titleconverter" />
+       
 
 
         <Style TargetType="Button">

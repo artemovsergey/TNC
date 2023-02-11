@@ -12,7 +12,7 @@
         xmlns:vm="clr-namespace:TNC.WPF.ViewModels" 
         
         mc:Ignorable="d"
-        Title="Телеком Нива Связь"
+        Title="{Binding Title,Converter={StaticResource ResourceKey=titleconverter}}"
         Height="450"
         Width="400"
         WindowStartupLocation="CenterScreen"
@@ -35,19 +35,15 @@
                                  CommandParameter="{Binding ElementName=passwordName}"/>
     </Window.InputBindings>
 
-
-    <Window.Resources>
-        <cnv:PasswordConverter x:Key="passwordconverter" />
-    </Window.Resources>
-
     <Grid>
         <StackPanel VerticalAlignment="Center"
                     HorizontalAlignment="Center">
-            <TextBlock Text="Телеком Нева Связь"
+            <TextBlock Text="{Binding Title}"
                        FontSize="20"
                        HorizontalAlignment="Center"
                        Margin="5"/>
-            <Image Margin="5" Source="/Resources/logo.jpg" Width="200" Height="100" Stretch="Uniform"/>
+            <Image Margin="5" Source="/Resources/logo.jpg"
+                   Width="200" Height="150" Stretch="Uniform"/>
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center">
@@ -106,7 +102,11 @@
                
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="20">
+            <StackPanel Orientation="Horizontal"
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        >
                 <Button Margin="5"
                         Width="100"
                         Height="30"
