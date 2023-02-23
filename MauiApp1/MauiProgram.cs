@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using TNC.MAUI.ViewModels;
 
-namespace TNC.MAUI
+namespace MauiApp1
 {
     public static class MauiProgram
     {
@@ -16,14 +15,9 @@ namespace TNC.MAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-                #if DEBUG
-		                builder.Logging.AddDebug();
-                #endif
-
-
-            builder.Services.AddTransient<MainPage>();
-
-            builder.Services.AddTransient<PersonViewModel>();
+#if DEBUG
+		builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }

@@ -59,32 +59,35 @@ namespace TNC.MAUI.ViewModels
                 ((Microsoft.Maui.Controls.Command)AddCommand).ChangeCanExecute();  
             }
         }
-
         #endregion
 
+        #region Свойство People
+        public ObservableCollection<Person> People { get; } = new();
+        #endregion
 
         #region Команда AddCommand
         public ICommand AddCommand { get; set; }
         #endregion
 
-        #region People
-        public ObservableCollection<Person> People { get; } = new();
-        #endregion
-
+        
         public PersonViewModel()
         {
             using (DataContext db = new DataContext())
             {
-                TextButton = db.People.Count().ToString();
+                //TextButton = db.People.Count().ToString();
             }
 
+
+
+            #region AddCommand
             // устанавливаем команду добавления
             AddCommand = new Microsoft.Maui.Controls.Command(
             () =>
             {
                 People.Add(new Person() { Name = PersonName, Age = PersonAge });
             },
-            () =>  PersonAge > 2 );
+            () => PersonAge > 2); 
+            #endregion
 
 
 

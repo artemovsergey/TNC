@@ -1,12 +1,16 @@
-﻿namespace TNC.MAUI
+﻿using TNC.MAUI.Views;
+
+namespace TNC.MAUI
 {
     public partial class App : Application
     {
-        public App()
+        public App(MainPage mainPage)
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new NavigationPage(new TestPage()); //new MainPage(); 
+
+            MainPage = new TestPage(); //new MainPage(); 
         }
     }
 }

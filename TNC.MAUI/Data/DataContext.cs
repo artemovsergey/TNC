@@ -17,7 +17,7 @@ namespace TNC.WPF.Data
         public DataContext()
         {
             //SQLitePCL.Batteries_V2.Init();
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Person> People { get; set; }

@@ -1,13 +1,22 @@
-﻿namespace TNC.MAUI
+﻿using TNC.MAUI.ViewModels;
+
+namespace TNC.MAUI
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
+        public MainPage(PersonViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
         public MainPage()
         {
             InitializeComponent();
         }
+
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
