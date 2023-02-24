@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TNC.MAUI.Views.СarouselViewPage"
+             xmlns:local="clr-namespace:TNC.MAUI.Models"
+             xmlns:vm="clr-namespace:TNC.MAUI.ViewModels"
+             
+
+             
+             
+             Title="СarouselViewPage">
+
+    <ContentPage.BindingContext>
+        <vm:PersonViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="5">
+
+        <Label x:Name="header" FontSize="18" Text="{Binding Source={x:Reference carouselView}, Path=CurrentItem.Name}" />
+
+        <CarouselView x:Name="carouselView"
+                      IndicatorView="indicatorView"
+                      CurrentItemChangedCommand="{Binding SelectCommand}"
+                      CurrentItemChangedCommandParameter="{Binding Source={x:Reference carouselView}, Path=CurrentItem}"
+                      >
+                      <!-- Команда срабатывает на изменение продукта -->
+
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" />
+            </CarouselView.ItemsLayout>
+
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type local:Product}">
+                    <local:Product Name="Huawei P50" ImagePath="image.jpg" Description="Цена 59000" />
+                    <local:Product Name="iPhone 14" ImagePath="image.jpg" Description="Цена 65000" />
+                    <local:Product Name="Realme GT2 Pro" ImagePath="image.jpg" Description="Цена 41000" />
+                    <local:Product Name="Xiaomi 12X" ImagePath="image.jpg" Description="Цена 53999" />
+                </x:Array>
+            </CarouselView.ItemsSource>
+            
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" HorizontalTextAlignment="Center"/>
+                            <Image WidthRequest="150" HeightRequest="150" Source="{Binding ImagePath}" />
+                            <Label Text="{Binding Description}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+
+                        <!-- Выбор механизма выбора элемента по клику -->
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={x:Reference carouselView}, Path=BindingContext.SelectCommand}"
+                                CommandParameter="{Binding}"/>
+                        </Frame.GestureRecognizers>
+
+
+                    </Frame>
+                    
+
+                    
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView Margin="0, 10, 0, 0" x:Name="indicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="Red"
+                   HorizontalOptions="Center" />
+
+
+    </VerticalStackLayout>
+</ContentPage>

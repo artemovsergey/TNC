@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TNC.MAUI.Models;
+using TNC.MAUI.Views;
 using TNC.WPF.Data;
 
 namespace TNC.MAUI.ViewModels
@@ -69,6 +70,11 @@ namespace TNC.MAUI.ViewModels
         public ICommand AddCommand { get; set; }
         #endregion
 
+        public ICommand SelectCommand { get; set; }
+        public ICommand SwitchToMainPageCommand { get; set; }
+
+        public ICommand BackToTestCommand { get; set; }
+
         
         public PersonViewModel()
         {
@@ -77,7 +83,9 @@ namespace TNC.MAUI.ViewModels
                 //TextButton = db.People.Count().ToString();
             }
 
-
+            People.Add(new Person() { Name = "user1", Age = 10 });
+            People.Add(new Person() { Name = "user2", Age = 11 });
+            People.Add(new Person() { Name = "user3", Age = 12 });
 
             #region AddCommand
             // устанавливаем команду добавления
@@ -86,8 +94,44 @@ namespace TNC.MAUI.ViewModels
             {
                 People.Add(new Person() { Name = PersonName, Age = PersonAge });
             },
-            () => PersonAge > 2); 
+            () => PersonAge > 2);
             #endregion
+
+            SelectCommand = new Command<Product>(async p =>
+            {
+                //await DisplayAlert("Notification", $"You have selected: {p.Name}", "ОK");
+
+                await Application.Current.MainPage.DisplayAlert("Notification", $"You have selected: {p.Name}", "ОK");
+
+            });
+
+            SwitchToMainPageCommand = new Command(
+                async () => 
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(
+
+                        new NavigationPage(new MainPage())
+                        {
+                            BarBackground = Brush.Yellow,
+                            BarBackgroundColor = Color.FromArgb("#2980B9"),
+                            BarTextColor = Colors.White
+                        }
+
+
+                        
+                     );
+                }
+                
+                );
+
+            BackToTestCommand = new Command(
+                async () =>
+                {
+                await Application.Current.MainPage.Navigation.PopAsync();
+
+                }
+
+                );
 
 
 

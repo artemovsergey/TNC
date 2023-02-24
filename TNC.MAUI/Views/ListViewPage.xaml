@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TNC.MAUI.ViewModels"
+             
+             
+             x:Class="TNC.MAUI.Views.ListViewPage"
+             Title="ListViewPage">
+
+    <ContentPage.BindingContext>
+        <vm:PersonViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:Array x:Key="users" Type="{x:Type x:String}">
+                <x:String>Tom</x:String>
+                <x:String>Bob</x:String>
+                <x:String>Sam</x:String>
+                <x:String>Alice</x:String>
+            </x:Array>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+        
+    <StackLayout>
+
+        <Label Text="{Binding Source={Reference listView}, Path=SelectedItem.Name}" />
+        <ListView RowHeight="50" x:Name="listView" ItemsSource="{Binding People}" >
+
+            <ListView.Header>
+                <Label Text= "Список пользователей" FontSize="18" />
+            </ListView.Header>
+            
+            <ListView.Footer>
+                <VerticalStackLayout>
+                    <Label FontSize="12" Text="METANIT.COM" />
+                    <Label FontSize="12" Text="январь 2023" />
+                </VerticalStackLayout>
+            </ListView.Footer>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="16" />
+                                <Label Text="{Binding Age}" FontSize="14" />
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+    
+    
+    
+    
+    
+</ContentPage>

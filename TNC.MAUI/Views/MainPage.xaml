@@ -41,8 +41,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </VerticalStackLayout>
 
+
+        <Button WidthRequest="200" HeightRequest="20" Text="Переход на страницу MainPage"
+                Command="{Binding BackToTestCommand}"/>
+
+    </VerticalStackLayout>
 
 
 

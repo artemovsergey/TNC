@@ -10,7 +10,12 @@ namespace TNC.MAUI
 
             //MainPage = new NavigationPage(new TestPage()); //new MainPage(); 
 
-            MainPage = new TestPage(); //new MainPage(); 
+            MainPage = new NavigationPage(new TestPage())
+            {
+                BarBackground = Brush.Yellow,
+                BarBackgroundColor = Color.FromArgb("#2980B9"),
+                BarTextColor = Colors.White
+            }; 
         }
     }
 }
