@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TaskApp.ViewModels"
+             x:DataType="viewmodel:MainViewModel"
+             
+             x:Class="TaskApp.MainPage"
+             Background="Transparent"
+
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodel:MainViewModel/>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="Auto,Auto,Auto"
+          
+          
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10"
+          
+          >
+
+        <Image Source="image.jpg"
+               Aspect="Center"
+               Background="White"
+              
+               />
+
+        
+        <Entry Grid.Row="1" Placeholder="..." Text="{Binding Test, Mode=TwoWay}"/>
+
+
+        <Button Grid.Row="2" WidthRequest="200" HeightRequest="30"
+                                    Text="Написать"
+                                    Command="{Binding SayTextCommand}"/>
+
+        <!--
+        <CollectionView Grid.Row="1"
+                        Background="Green"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+            
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Apple</x:String>
+                    <x:String>Bananas</x:String>
+                    <x:String>Orange</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=DeleteCommand}"
+                                           CommandParametr="{Binding .}"
+                            />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <StackLayout Padding="0" VerticalOptions="Center">
+
+                            <Entry Placeholder="..." Text="{Binding Test, Mode=TwoWay}"/>
+                           
+                            <Label Text="{Binding Test, StringFormat='Fruit: {0}',Mode=TwoWay}"
+                               FontSize="20"/>
+
+                            <Button WidthRequest="200" HeightRequest="30"
+                                    Text="Написать"
+                                    Command="{Binding SayTextCommand}"/>
+
+                        </StackLayout>
+
+                    </SwipeView>
+                            
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+        -->
+        
+        
+    </Grid>
+
+</ContentPage>
